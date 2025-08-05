@@ -1,0 +1,18 @@
+ktor:
+  application:
+    modules:
+      - com.example.ApplicationKt.module
+  deployment:
+    port: 8080
+jwt:
+  domain: "http://localhost:8080/"
+  audience: "client"
+  issuer: "http://localhost:8080/"
+  realm: "ktor-books-api"
+  claimField: "id"
+  secret: ${JWT_SECRET}
+database:
+  url: "jdbc:postgresql://localhost:5440/books_db?currentSchema=public"
+  user: "user"
+  password: ${DB_PASSWORD}
+  driver: "org.postgresql.Driver"
