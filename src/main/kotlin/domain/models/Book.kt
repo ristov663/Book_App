@@ -11,12 +11,3 @@ data class Book(
     val imageUrl: String,
     val description: String
 )
-
-fun Book.toDto() = Book(
-    id = id,
-    title = title,
-    author = author,
-    genre = genre,
-    imageUrl = imageUrl,
-    description = description
-)

@@ -5,14 +5,31 @@ ktor:
   deployment:
     port: 8080
 jwt:
-  domain: "http://localhost:8080/"
-  audience: "client"
-  issuer: "http://localhost:8080/"
-  realm: "ktor-books-api"
+  domain: ${JWT_DOMAIN}
+  audience: ${JWT_AUDIENCE}
+  issuer: ${JWT_ISSUER}
+  realm: ${JWT_REALM}
   claimField: "id"
   secret: ${JWT_SECRET}
+  accessTokenExpiration: ${JWT_ACCESS_EXPIRATION}
+  refreshTokenExpiration: ${JWT_REFRESH_EXPIRATION}
 database:
-  url: "jdbc:postgresql://localhost:5440/books_db?currentSchema=public"
-  user: "user"
+  url: ${DB_URL}
+  user: ${DB_USER}
   password: ${DB_PASSWORD}
   driver: "org.postgresql.Driver"
+mail:
+  host: ${MAIL_HOST}
+  port: ${MAIL_PORT}
+  username: ${MAIL_USERNAME}
+  password: ${MAIL_PASSWORD}
+  default-encoding: UTF-8
+  properties:
+    mail:
+      smtp:
+        auth: true
+        starttls:
+          enable: true
+        connectiontimeout: 5000
+        timeout: 5000
+        writetimeout: 5000

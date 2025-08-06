@@ -21,6 +21,9 @@ fun Application.InitDatabase(): Connection {
         isAutoCommit = false
         schema = "public"
         transactionIsolation = "TRANSACTION_REPEATABLE_READ"
+        idleTimeout = 60000
+        maxLifetime = 300000
+        validationTimeout = 5000
     }
     val dataSource = HikariDataSource(config)
 

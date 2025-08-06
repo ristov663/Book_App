@@ -2,13 +2,18 @@ package com.example
 
 import ConfigureLiquibase
 import com.example.db.InitDatabase
-import com.example.di.ConfigureKoin
+import com.example.di.configureKoin
 import com.example.domain.services.BookService
+import com.example.domain.services.UserService
+import com.example.plugins.configureAuthentication
+import com.example.plugins.configureContentNegotiation
+import com.example.plugins.configureStatusPages
+import com.example.routes.authRoutes
 import com.example.routes.bookRoutes
-import io.ktor.http.HttpHeaders
-import io.ktor.http.HttpMethod
+import com.example.routes.userRoutes
+import io.ktor.http.*
 import io.ktor.server.application.*
-import io.ktor.server.plugins.cors.routing.CORS
+import io.ktor.server.plugins.cors.routing.*
 import org.koin.ktor.ext.get
 
 fun main(args: Array<String>) {
@@ -16,8 +21,11 @@ fun main(args: Array<String>) {
 }
 
 fun Application.module() {
-    ConfigureKoin()
+
+    configureKoin()
     configureContentNegotiation()
+    configureStatusPages()
+    configureAuthentication()
 
     val connection = InitDatabase()
     ConfigureLiquibase(connection)
@@ -33,5 +41,9 @@ fun Application.module() {
     }
 
     val bookService = get<BookService>()
+    val userService = get<UserService>()
+
     bookRoutes(bookService)
+    userRoutes(userService)
+    authRoutes()
 }

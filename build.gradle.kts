@@ -52,6 +52,16 @@ dependencies {
     implementation("io.insert-koin:koin-logger-slf4j:3.5.6")
     implementation("dev.d1s:ktor-server-liquibase:$ktorServerLiquibaseVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
+    implementation("com.sun.mail:jakarta.mail:2.0.1")
+
+    implementation("io.ktor:ktor-server-request-validation-jvm")
+    implementation("org.simplejavamail:simple-java-mail:8.3.1")
+
+    implementation("io.jsonwebtoken:jjwt-api:0.11.5")
+    implementation("io.jsonwebtoken:jjwt-impl:0.11.5")
+    implementation("io.jsonwebtoken:jjwt-jackson:0.11.5")
+    implementation("io.ktor:ktor-server-host-common:3.2.3")
+    implementation("io.ktor:ktor-server-status-pages:3.2.3")
 
     testImplementation("io.ktor:ktor-server-test-host")
     testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
