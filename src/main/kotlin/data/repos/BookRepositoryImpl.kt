@@ -3,7 +3,7 @@ package com.example.data.repos
 import com.example.db.entities.BookEntity
 import com.example.db.entities.toEntity
 import com.example.db.tables.BooksTable
-import com.example.db.utils.dbQuery
+import com.example.utils.dbQuery
 import com.example.domain.models.Book
 import com.example.domain.models.PageResponse
 import com.example.domain.repos.BookRepository
@@ -42,6 +42,14 @@ class BookRepositoryImpl : BookRepository {
                         (LowerCase(BooksTable.author) like likeQuery)
             }
             paginate(BookEntity.find(op), page, size)
+        }
+    }
+
+    override suspend fun updateBookRating(bookId: Int, averageRating: Double, ratingsCount: Int) {
+        return dbQuery {
+            val book = BookEntity.findById(bookId) ?: throw NoSuchElementException("Book not found")
+            book.averageRating = averageRating
+            book.ratingsCount = ratingsCount
         }
     }
 

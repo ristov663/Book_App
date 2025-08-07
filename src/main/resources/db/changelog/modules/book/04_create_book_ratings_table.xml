@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+        http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="create-book-ratings" author="ristov663">
+        <createTable tableName="book_ratings">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="user_id" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="book_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="rating" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="comment" type="TEXT"/>
+
+            <column name="created_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="updated_at" type="TIMESTAMP" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+                baseTableName="book_ratings"
+                baseColumnNames="user_id"
+                referencedTableName="users"
+                referencedColumnNames="id"
+                onDelete="CASCADE"
+                constraintName="fk_book_ratings_user"/>
+
+        <addForeignKeyConstraint
+                baseTableName="book_ratings"
+                baseColumnNames="book_id"
+                referencedTableName="books"
+                referencedColumnNames="id"
+                onDelete="CASCADE"
+                constraintName="fk_book_ratings_book"/>
+
+        <addUniqueConstraint
+                tableName="book_ratings"
+                columnNames="user_id, book_id"
+                constraintName="uc_user_book_rating"/>
+    </changeSet>
+</databaseChangeLog>

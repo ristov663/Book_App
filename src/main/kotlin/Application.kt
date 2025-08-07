@@ -3,12 +3,14 @@ package com.example
 import ConfigureLiquibase
 import com.example.db.InitDatabase
 import com.example.di.configureKoin
+import com.example.domain.services.BookRatingService
 import com.example.domain.services.BookService
 import com.example.domain.services.UserService
 import com.example.plugins.configureAuthentication
 import com.example.plugins.configureContentNegotiation
 import com.example.plugins.configureStatusPages
 import com.example.routes.authRoutes
+import com.example.routes.bookRatingRoutes
 import com.example.routes.bookRoutes
 import com.example.routes.userRoutes
 import io.ktor.http.*
@@ -42,8 +44,10 @@ fun Application.module() {
 
     val bookService = get<BookService>()
     val userService = get<UserService>()
+    val bookRatingService = get<BookRatingService>()
 
     bookRoutes(bookService)
     userRoutes(userService)
+    bookRatingRoutes(bookRatingService)
     authRoutes()
 }

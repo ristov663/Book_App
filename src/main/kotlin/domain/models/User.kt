@@ -1,6 +1,6 @@
 package com.example.domain.models
 
-import com.example.db.utils.UUIDSerializer
+import com.example.utils.UUIDSerializer
 import kotlinx.serialization.Serializable
 import java.util.UUID
 

@@ -1,11 +1,13 @@
 package com.example.di
 
 import com.example.data.services.AuthServiceImpl
+import com.example.data.services.BookRatingServiceImpl
 import com.example.data.services.BookServiceImpl
 import com.example.data.services.EmailServiceImpl
 import com.example.data.services.JwtServiceImpl
 import com.example.data.services.UserServiceImpl
 import com.example.domain.services.AuthService
+import com.example.domain.services.BookRatingService
 import com.example.domain.services.BookService
 import com.example.domain.services.EmailService
 import com.example.domain.services.JwtService
@@ -32,5 +34,9 @@ val servicesModule = module {
 
     single<JwtService> {
         JwtServiceImpl(get())
+    }
+
+    single<BookRatingService> {
+        BookRatingServiceImpl(get(), get(), get())
     }
 }

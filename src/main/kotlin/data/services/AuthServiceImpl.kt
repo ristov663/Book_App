@@ -2,7 +2,7 @@ package com.example.data.services
 
 import com.example.db.entities.VerificationCodeEntity
 import com.example.db.tables.VerificationCodesTable
-import com.example.db.utils.dbQuery
+import com.example.utils.dbQuery
 import com.example.domain.models.AuthResponse
 import com.example.domain.services.AuthService
 import com.example.domain.services.EmailService

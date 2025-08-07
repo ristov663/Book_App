@@ -4,7 +4,7 @@ import com.example.domain.models.User
 import com.example.domain.repos.UserRepository
 import com.example.db.entities.UserEntity
 import com.example.db.entities.toEntity
-import com.example.db.utils.dbQuery
+import com.example.utils.dbQuery
 import com.example.db.tables.UsersTable
 import com.example.domain.models.PageResponse
 import com.example.domain.models.UpdateUserRequest

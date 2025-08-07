@@ -9,5 +9,8 @@ data class Book(
     val author: String,
     val genre: String,
     val imageUrl: String,
-    val description: String
+    val bookUrl: String,
+    val description: String,
+    val averageRating: Double = 0.0,
+    val ratingsCount: Int = 0
 )

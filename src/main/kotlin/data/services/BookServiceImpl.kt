@@ -23,4 +23,6 @@ class BookServiceImpl(
     override suspend fun searchBooks(query: String, page: Int, size: Int): PageResponse<Book> =
         bookRepository.searchBooks(query, page, size)
 
+    override suspend fun updateBookRating(bookId: Int, averageRating: Double, ratingsCount: Int) =
+        bookRepository.updateBookRating(bookId, averageRating, ratingsCount)
 }

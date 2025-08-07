@@ -14,7 +14,7 @@ fun Application.bookRoutes(bookService: BookService) {
     routing {
         authenticate("auth-jwt") {
 
-            route("/api/books") {
+            route("/api/v1/books") {
                 get {
                     val page = call.request.queryParameters["page"]?.toIntOrNull() ?: 1
                     val size = call.request.queryParameters["size"]?.toIntOrNull() ?: 10

@@ -3,7 +3,7 @@ package com.example.data.repos
 import com.example.db.entities.VerificationCodeEntity
 import com.example.db.entities.toEntity
 import com.example.db.tables.VerificationCodesTable
-import com.example.db.utils.dbQuery
+import com.example.utils.dbQuery
 import com.example.domain.models.SignInRequest
 import com.example.domain.models.VerificationCode
 import com.example.domain.repos.VerificationCodeRepository

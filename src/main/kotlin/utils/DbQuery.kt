@@ -1,4 +1,4 @@
-package com.example.db.utils
+package com.example.utils
 
 import kotlinx.coroutines.Dispatchers
 import org.jetbrains.exposed.sql.transactions.experimental.newSuspendedTransaction

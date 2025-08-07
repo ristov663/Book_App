@@ -9,4 +9,5 @@ interface BookRepository {
     suspend fun getAllBooks(page: Int, size: Int): PageResponse<Book>
     suspend fun getBooksByGenre(query: String, page: Int, size: Int): PageResponse<Book>
     suspend fun searchBooks(query: String, page: Int, size: Int): PageResponse<Book>
+    suspend fun updateBookRating(bookId: Int, averageRating: Double, ratingsCount: Int)
 }

@@ -13,7 +13,10 @@ class BookEntity(id: EntityID<Int>) : IntEntity(id) {
     var author by BooksTable.author
     var genre by BooksTable.genre
     var imageUrl by BooksTable.imageUrl
+    var bookUrl by BooksTable.bookUrl
     var description by BooksTable.description
+    var averageRating by BooksTable.averageRating
+    var ratingsCount by BooksTable.ratingsCount
 }
 
 fun BookEntity.toEntity() = Book(
@@ -22,5 +25,8 @@ fun BookEntity.toEntity() = Book(
     author = author,
     genre = genre,
     imageUrl = imageUrl,
-    description = description
+    bookUrl = bookUrl,
+    description = description,
+    averageRating = averageRating,
+    ratingsCount = ratingsCount
 )
