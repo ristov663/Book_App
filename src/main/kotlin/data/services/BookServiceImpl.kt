@@ -12,16 +12,8 @@ class BookServiceImpl(
     override suspend fun getBookById(id: Int): Book =
         bookRepository.getBookById(id)
 
-
-    override suspend fun getAllBooks(page: Int, size: Int): PageResponse<Book> =
-        bookRepository.getAllBooks(page, size)
-
-
-    override suspend fun getBooksByGenre(query: String, page: Int, size: Int): PageResponse<Book> =
-        bookRepository.getBooksByGenre(query, page, size)
-
-    override suspend fun searchBooks(query: String, page: Int, size: Int): PageResponse<Book> =
-        bookRepository.searchBooks(query, page, size)
+    override suspend fun getAllBooks(page: Int, size: Int, genre: String?, query: String?): PageResponse<Book> =
+        bookRepository.getAllBooks(page, size, genre, query)
 
     override suspend fun updateBookRating(bookId: Int, averageRating: Double, ratingsCount: Int) =
         bookRepository.updateBookRating(bookId, averageRating, ratingsCount)

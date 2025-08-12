@@ -58,15 +58,6 @@ class UserRepositoryImpl : UserRepository {
         return dbQuery {
             val user = UserEntity.findById(id) ?: throw NoSuchElementException("User with id $id not found")
 
-            request.email?.let {
-                val existingUser = UserEntity.find { UsersTable.email eq it }.firstOrNull()
-                if (existingUser != null && existingUser.id.value != id) {
-                    throw NoSuchElementException("User with id $id not found")
-                }
-                user.email = it
-            }
-
-            request.email?.let { user.email = it }
             user.firstName = request.firstName ?: user.firstName
             user.lastName = request.lastName ?: user.lastName
             user.profilePictureUrl = request.profilePictureUrl ?: user.profilePictureUrl

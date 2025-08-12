@@ -15,17 +15,14 @@ fun Application.bookRoutes(bookService: BookService) {
         authenticate("auth-jwt") {
 
             route("/api/v1/books") {
+
                 get {
                     val page = call.request.queryParameters["page"]?.toIntOrNull() ?: 1
                     val size = call.request.queryParameters["size"]?.toIntOrNull() ?: 10
                     val searchQuery = call.request.queryParameters["search"]
                     val genreFilter = call.request.queryParameters["genre"]
 
-                    val booksResponse: PageResponse<Book> = when {
-                        !searchQuery.isNullOrBlank() -> bookService.searchBooks(searchQuery, page, size)
-                        !genreFilter.isNullOrBlank() -> bookService.getBooksByGenre(genreFilter, page, size)
-                        else -> bookService.getAllBooks(page, size)
-                    }
+                    val booksResponse = bookService.getAllBooks(page, size, genreFilter, searchQuery)
 
                     if (booksResponse.content.isEmpty()) {
                         call.respond(HttpStatusCode.NoContent)

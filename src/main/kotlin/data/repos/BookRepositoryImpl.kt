@@ -10,7 +10,8 @@ import com.example.domain.repos.BookRepository
 import org.jetbrains.exposed.sql.Op
 import org.jetbrains.exposed.sql.LowerCase
 import org.jetbrains.exposed.sql.SizedIterable
-import org.jetbrains.exposed.sql.or
+import org.jetbrains.exposed.sql.SqlExpressionBuilder.like
+import org.jetbrains.exposed.sql.and
 
 class BookRepositoryImpl : BookRepository {
 
@@ -20,28 +21,26 @@ class BookRepositoryImpl : BookRepository {
         }
     }
 
-    override suspend fun getAllBooks(page: Int, size: Int): PageResponse<Book> {
+    override suspend fun getAllBooks(page: Int, size: Int, genre: String?, query: String?): PageResponse<Book> {
         return dbQuery {
-            paginate(BookEntity.all(), page, size)
-        }
-    }
+            var op: Op<Boolean>? = null
 
-    override suspend fun getBooksByGenre(query: String, page: Int, size: Int): PageResponse<Book> {
-        return dbQuery {
-            val likeQuery = "%${query.lowercase()}%"
-            val op = Op.build { LowerCase(BooksTable.genre) like likeQuery }
-            paginate(BookEntity.find(op), page, size)
-        }
-    }
-
-    override suspend fun searchBooks(query: String, page: Int, size: Int): PageResponse<Book> {
-        return dbQuery {
-            val likeQuery = "%${query.lowercase()}%"
-            val op = Op.build {
-                (LowerCase(BooksTable.title) like likeQuery) or
-                        (LowerCase(BooksTable.author) like likeQuery)
+            if (!genre.isNullOrBlank()) {
+                val likeGenre = "%${genre.lowercase()}%"
+                op = LowerCase(BooksTable.genre) like likeGenre
             }
-            paginate(BookEntity.find(op), page, size)
+
+            if (!query.isNullOrBlank()) {
+                val likeQuery = "%${query.lowercase()}%"
+                val searchOp = (LowerCase(BooksTable.title) like likeQuery)
+                op = if (op != null) op and searchOp else searchOp
+            }
+
+            paginate(
+                if (op != null) BookEntity.find(op) else BookEntity.all(),
+                page,
+                size
+            )
         }
     }
 
