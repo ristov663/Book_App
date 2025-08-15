@@ -1,7 +1,7 @@
 package com.example.data.services
 
-import com.example.domain.models.PageResponse
-import com.example.domain.models.UpdateUserRequest
+import com.example.api.dtos.PageResponse
+import com.example.api.dtos.UpdateUserRequest
 import com.example.domain.models.User
 import com.example.domain.repos.UserRepository
 import com.example.domain.services.UserService

@@ -1,5 +1,8 @@
 package com.example.data.repos
 
+import com.example.api.dtos.CreateRatingRequest
+import com.example.api.dtos.PageResponse
+import com.example.api.dtos.UpdateRatingRequest
 import com.example.db.entities.BookRatingEntity
 import com.example.db.entities.toEntity
 import com.example.db.tables.BookRatingsTable

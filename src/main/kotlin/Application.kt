@@ -5,6 +5,8 @@ import com.example.db.InitDatabase
 import com.example.di.configureKoin
 import com.example.domain.services.BookRatingService
 import com.example.domain.services.BookService
+import com.example.domain.services.BookWishlistService
+import com.example.domain.services.ReadBooksService
 import com.example.domain.services.UserService
 import com.example.plugins.configureAuthentication
 import com.example.plugins.configureContentNegotiation
@@ -12,7 +14,9 @@ import com.example.plugins.configureStatusPages
 import com.example.routes.authRoutes
 import com.example.routes.bookRatingRoutes
 import com.example.routes.bookRoutes
+import com.example.routes.readBooksRoutes
 import com.example.routes.userRoutes
+import com.example.routes.wishlistRoutes
 import io.ktor.http.*
 import io.ktor.server.application.*
 import io.ktor.server.plugins.cors.routing.*
@@ -45,9 +49,13 @@ fun Application.module() {
     val bookService = get<BookService>()
     val userService = get<UserService>()
     val bookRatingService = get<BookRatingService>()
+    val readBooksService = get<ReadBooksService>()
+    val bookWishlistService = get<BookWishlistService>()
 
     bookRoutes(bookService)
     userRoutes(userService)
     bookRatingRoutes(bookRatingService)
+    readBooksRoutes(readBooksService)
+    wishlistRoutes(bookWishlistService)
     authRoutes()
 }

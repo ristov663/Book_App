@@ -6,8 +6,8 @@ import com.example.db.entities.UserEntity
 import com.example.db.entities.toEntity
 import com.example.utils.dbQuery
 import com.example.db.tables.UsersTable
-import com.example.domain.models.PageResponse
-import com.example.domain.models.UpdateUserRequest
+import com.example.api.dtos.PageResponse
+import com.example.api.dtos.UpdateUserRequest
 import com.example.domain.models.UserRole
 import org.jetbrains.exposed.sql.SizedIterable
 import java.time.LocalDateTime
@@ -51,6 +51,13 @@ class UserRepositoryImpl : UserRepository {
     override suspend fun getAllUsers(page: Int, size: Int): PageResponse<User> {
         return dbQuery {
             paginate(UserEntity.all(), page, size)
+        }
+    }
+
+    override suspend fun getUsersByIds(userIds: List<UUID>): List<User> {
+        return dbQuery {
+            UserEntity.find { UsersTable.id.inList(userIds) }
+                .map { it.toEntity() }
         }
     }
 

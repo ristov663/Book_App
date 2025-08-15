@@ -1,7 +1,5 @@
 package com.example.routes
 
-import com.example.domain.models.Book
-import com.example.domain.models.PageResponse
 import com.example.domain.services.BookService
 import io.ktor.http.*
 import io.ktor.server.application.*
@@ -13,9 +11,9 @@ import kotlin.text.toIntOrNull
 fun Application.bookRoutes(bookService: BookService) {
     routing {
         authenticate("auth-jwt") {
-
             route("/api/v1/books") {
 
+                // Get a paginated list of all books, optionally filtered by genre and searchable by query
                 get {
                     val page = call.request.queryParameters["page"]?.toIntOrNull() ?: 1
                     val size = call.request.queryParameters["size"]?.toIntOrNull() ?: 10
@@ -31,6 +29,7 @@ fun Application.bookRoutes(bookService: BookService) {
                     }
                 }
 
+                // Get detailed information for a specific book by its ID
                 get("/{id}") {
                     val id = call.parameters["id"]?.toIntOrNull()
                     if (id == null) {

@@ -1,7 +1,7 @@
 package com.example.data.services
 
 import com.example.domain.models.Book
-import com.example.domain.models.PageResponse
+import com.example.api.dtos.PageResponse
 import com.example.domain.repos.BookRepository
 import com.example.domain.services.BookService
 

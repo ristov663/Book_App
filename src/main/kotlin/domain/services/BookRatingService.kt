@@ -1,5 +1,9 @@
 package com.example.domain.services
 
+import com.example.api.dtos.BookRatingResponse
+import com.example.api.dtos.CreateRatingRequest
+import com.example.api.dtos.PageResponse
+import com.example.api.dtos.UpdateRatingRequest
 import com.example.domain.models.*
 import java.util.UUID
 

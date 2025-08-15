@@ -1,6 +1,8 @@
 package com.example.routes
 
-import com.example.domain.models.*
+import com.example.api.dtos.CreateRatingRequest
+import com.example.api.dtos.ErrorResponse
+import com.example.api.dtos.UpdateRatingRequest
 import com.example.domain.services.BookRatingService
 import io.ktor.http.*
 import io.ktor.server.application.*
@@ -17,6 +19,7 @@ fun Application.bookRatingRoutes(bookRatingService: BookRatingService) {
         authenticate("auth-jwt") {
             route("/api/v1/books/{bookId}/ratings") {
 
+                // Create a new rating for a specific book by authenticated user
                 post {
                     val bookId = call.parameters["bookId"]?.toIntOrNull()
                     if (bookId == null) {
@@ -47,6 +50,7 @@ fun Application.bookRatingRoutes(bookRatingService: BookRatingService) {
                     }
                 }
 
+                // Get a paginated list of ratings for a specific book
                 get {
                     val bookId = call.parameters["bookId"]?.toIntOrNull()
                     if (bookId == null) {
@@ -66,6 +70,7 @@ fun Application.bookRatingRoutes(bookRatingService: BookRatingService) {
                     }
                 }
 
+                // Update an existing rating for a specific book by authenticated user
                 put {
                     val bookId = call.parameters["bookId"]?.toIntOrNull()
                     if (bookId == null) {
@@ -101,6 +106,7 @@ fun Application.bookRatingRoutes(bookRatingService: BookRatingService) {
                     }
                 }
 
+                // Delete the rating for a specific book by authenticated user
                 delete {
                     val bookId = call.parameters["bookId"]?.toIntOrNull()
                     if (bookId == null) {
@@ -129,6 +135,7 @@ fun Application.bookRatingRoutes(bookRatingService: BookRatingService) {
                     }
                 }
 
+                // Get the authenticated user's rating for a specific book
                 get("/me") {
                     val bookId = call.parameters["bookId"]?.toIntOrNull()
                     if (bookId == null) {
@@ -158,6 +165,7 @@ fun Application.bookRatingRoutes(bookRatingService: BookRatingService) {
                 }
             }
 
+            // Get all ratings made by the authenticated user with pagination
             route("/api/v1/ratings/me") {
                 get {
                     val principal = call.principal<JWTPrincipal>()

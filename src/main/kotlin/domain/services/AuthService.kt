@@ -1,6 +1,6 @@
 package com.example.domain.services
 
-import com.example.domain.models.AuthResponse
+import com.example.api.dtos.AuthResponse
 
 interface AuthService {
 

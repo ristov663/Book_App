@@ -7,17 +7,12 @@ import java.time.LocalDateTime
 import java.util.UUID
 
 @Serializable
-data class BookRating(
-    val id: Long,
+data class ReadBook(
+    val id: Int,
     @Serializable(with = UUIDSerializer::class)
     val userId: UUID,
-    val user: User,
     val bookId: Int,
-    val book: Book,
-    val rating: Int,
-    val comment: String? = null,
+    val notes: String?,
     @Serializable(with = LocalDateTimeSerializer::class)
-    val createdAt: LocalDateTime,
-    @Serializable(with = LocalDateTimeSerializer::class)
-    val updatedAt: LocalDateTime
+    val createdAt: LocalDateTime
 )

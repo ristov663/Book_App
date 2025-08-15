@@ -1,9 +1,9 @@
 package com.example.domain.repos
 
 import com.example.domain.models.BookRating
-import com.example.domain.models.CreateRatingRequest
-import com.example.domain.models.PageResponse
-import com.example.domain.models.UpdateRatingRequest
+import com.example.api.dtos.CreateRatingRequest
+import com.example.api.dtos.PageResponse
+import com.example.api.dtos.UpdateRatingRequest
 import java.util.UUID
 
 interface BookRatingRepository {

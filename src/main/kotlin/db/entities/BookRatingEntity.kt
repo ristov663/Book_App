@@ -10,7 +10,9 @@ class BookRatingEntity(id: EntityID<Long>) : LongEntity(id) {
     companion object : LongEntityClass<BookRatingEntity>(BookRatingsTable)
 
     var userId by BookRatingsTable.userId
+    val user by UserEntity referencedOn BookRatingsTable.userId
     var bookId by BookRatingsTable.bookId
+    var book by BookEntity referencedOn BookRatingsTable.bookId
     var rating by BookRatingsTable.rating
     var comment by BookRatingsTable.comment
     var createdAt by BookRatingsTable.createdAt
@@ -20,7 +22,9 @@ class BookRatingEntity(id: EntityID<Long>) : LongEntity(id) {
 fun BookRatingEntity.toEntity() = BookRating(
     id = id.value,
     userId = userId.value,
+    user = user.toEntity(),
     bookId = bookId.value,
+    book = book.toEntity(),
     rating = rating,
     comment = comment,
     createdAt = createdAt,

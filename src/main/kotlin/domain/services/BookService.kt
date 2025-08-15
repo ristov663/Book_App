@@ -1,7 +1,7 @@
 package com.example.domain.services
 
 import com.example.domain.models.Book
-import com.example.domain.models.PageResponse
+import com.example.api.dtos.PageResponse
 
 interface BookService {
 

@@ -5,7 +5,7 @@ import com.example.db.entities.toEntity
 import com.example.db.tables.BooksTable
 import com.example.utils.dbQuery
 import com.example.domain.models.Book
-import com.example.domain.models.PageResponse
+import com.example.api.dtos.PageResponse
 import com.example.domain.repos.BookRepository
 import org.jetbrains.exposed.sql.Op
 import org.jetbrains.exposed.sql.LowerCase

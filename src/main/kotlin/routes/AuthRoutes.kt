@@ -1,10 +1,12 @@
 package com.example.routes
 
+import com.example.api.dtos.ErrorResponse
+import com.example.api.dtos.SendCodeRequest
+import com.example.api.dtos.SignInRequest
 import com.example.config.getJwtConfig
 import com.example.data.services.AuthServiceImpl
 import com.example.data.services.EmailServiceImpl
 import com.example.data.services.JwtServiceImpl
-import com.example.domain.models.*
 import com.example.domain.services.UserService
 import io.ktor.http.*
 import io.ktor.server.application.*
@@ -27,6 +29,7 @@ fun Application.authRoutes() {
     routing {
         route("/api/v1/auth") {
 
+            // Send verification code to user's email address
             post("/email/send-code") {
                 try {
                     val request = call.receive<SendCodeRequest>()
@@ -46,6 +49,7 @@ fun Application.authRoutes() {
                 }
             }
 
+            // Sign in user with email and verification code
             post("/email/signin") {
                 try {
                     val request = call.receive<SignInRequest>()
@@ -71,6 +75,7 @@ fun Application.authRoutes() {
 
             authenticate("auth-jwt") {
 
+                // Get the authenticated user's profile info from JWT token
                 get("/profile") {
                     val principal = call.principal<JWTPrincipal>()
                     val userId = try {

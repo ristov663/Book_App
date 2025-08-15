@@ -1,6 +1,6 @@
 package com.example.domain.repos
 
-import com.example.domain.models.SignInRequest
+import com.example.api.dtos.SignInRequest
 import com.example.domain.models.VerificationCode
 
 interface VerificationCodeRepository {

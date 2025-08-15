@@ -11,4 +11,6 @@
     <include file="/db/changelog/modules/book/02_create_users_table.xml" relativeToChangelogFile="false"/>
     <include file="/db/changelog/modules/book/03_create_verification_codes_table.xml" relativeToChangelogFile="false"/>
     <include file="/db/changelog/modules/book/04_create_book_ratings_table.xml" relativeToChangelogFile="false"/>
+    <include file="/db/changelog/modules/book/05_create_read_books_table.xml" relativeToChangelogFile="false"/>
+    <include file="/db/changelog/modules/book/06_create_book_wishlist_table.xml" relativeToChangelogFile="false"/>
 </databaseChangeLog>

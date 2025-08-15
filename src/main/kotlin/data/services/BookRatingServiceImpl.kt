@@ -1,5 +1,9 @@
 package com.example.data.services
 
+import com.example.api.dtos.BookRatingResponse
+import com.example.api.dtos.CreateRatingRequest
+import com.example.api.dtos.PageResponse
+import com.example.api.dtos.UpdateRatingRequest
 import com.example.domain.models.*
 import com.example.domain.repos.BookRatingRepository
 import com.example.domain.services.BookRatingService
@@ -44,13 +48,16 @@ class BookRatingServiceImpl(
 
     override suspend fun getRatingsByBook(bookId: Int, page: Int, size: Int): PageResponse<BookRatingResponse> {
         val ratingsPage = bookRatingRepository.getRatingsByBook(bookId, page, size)
+        val book = bookService.getBookById(bookId)
 
         val ratingsWithUserInfo = ratingsPage.content.map { rating ->
             val user = userService.getUserById(rating.userId)
             BookRatingResponse(
                 id = rating.id,
                 userId = rating.userId.toString(),
+                user = user,
                 bookId = rating.bookId,
+                book = book,
                 rating = rating.rating,
                 comment = rating.comment,
                 userEmail = user.email,
